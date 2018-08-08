@@ -552,8 +552,9 @@ def auth():
             print("Wrong username or password, please, enter again\n")
 
 
-check = check_users("admin")
-if check:
-    add_user("admin", "admin", 'a', 'admin')
-    write_msg_id(1)
-auth()
+if __name__ == '__main__':
+    check = check_users("admin")
+    if check:
+        add_user("admin", "admin", 'a', 'admin')
+        write_msg_id(1)
+    auth()
