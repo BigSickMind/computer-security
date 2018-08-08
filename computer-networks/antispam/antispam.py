@@ -221,9 +221,9 @@ def isSpam(file):
     else:
         print("This message " + file + " is spam")
 
+if __name__ == '__main__':
+    print("Enter the file:")
+    file = input()
 
-print("Enter the file:")
-file = input()
-
-isSpam(file)
+    isSpam(file)
 

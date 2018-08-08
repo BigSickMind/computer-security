@@ -66,7 +66,8 @@ def isUsingNetwork(folder):
     except:
         print("No access to " + folder)
 
-print("Enter the directory:")
-directory = input()
+if __name__ == '__main__':
+    print("Enter the directory:")
+    directory = input()
 
-isUsingNetwork(directory)
+    isUsingNetwork(directory)
