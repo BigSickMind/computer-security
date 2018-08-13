@@ -45,7 +45,7 @@ def generate_keys(count):
         n = randint(2, 1e5)
         b = randint(2, 1e9)
         while (a + b) % n != mod or (a, b, n) in all_generated_keys or (b, a, n) in all_generated_keys or (
-                                                      a, b, n) in new_generated_keys or (b, a, n) in new_generated_keys:
+                a, b, n) in new_generated_keys or (b, a, n) in new_generated_keys:
             b = randint(2, 1e9)
         new_generated_keys.append((a, b, n))
 
@@ -82,26 +82,9 @@ def encrypt(file, input_key):
         print("You haven't access to this file, encryption is failed\n")
         return
 
-    """""
-    alph = make_alph()
-
-    encrypted_text = ""
-    for letter in text.lower():
-        pos = alph.find(letter)
-        if pos >= 0:
-            encrypted_text += alph[(pos + key) % len(alph)]
-    """""
-    #a = 5
-    #c = 47
-    #mod = 1000
-    #x = key
-
     encrypted_text = ""
     for letter in text:
         encrypted_text += chr(ord(letter) ^ key)
-        #encrypted_text += chr(ord(letter) ^ x)
-        #x = (a * x + c) % m
-
 
     with open('encrypted_file.txt', 'w', encoding='utf-8') as output_text:
         output_text.write(encrypted_text)
@@ -125,27 +108,9 @@ def decrypt(file, input_key):
         print("You haven't access to this file, decryption is failed\n")
         return
 
-    """""
-    alph = make_alph()
-    key %= len(alph)
-
-    text = ""
-    for letter in encrypted_text.lower():
-        pos = alph.find(letter)
-        if pos >= 0:
-            text += alph[(pos - (key % len(alph)) + len(alph)) % len(alph)]
-    """""
-
-    #a = 5
-    #c = 47
-    #mod = 1000
-    #x = key
-
     text = ""
     for letter in encrypted_text:
         text += chr(ord(letter) ^ key)
-        # text += chr(ord(letter) ^ x)
-        # x = (a * x + c) % m
 
     with open('decrypted_file.txt', 'w', encoding='utf-8') as output_text:
         output_text.write(text)
@@ -157,7 +122,7 @@ def file_encryption():
     print('1    generate keys')
     print('2    encrypt file')
     print('3    decrypt file\n')
-    
+
     print("Type command: ", end="")
     command = input()
     print()

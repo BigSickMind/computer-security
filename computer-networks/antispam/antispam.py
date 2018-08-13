@@ -1,6 +1,8 @@
 import email
 import re
+
 domain_template = re.compile(r"(([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\.)+[a-z]{2,10})")
+
 
 def isSpam(file):
     try:
@@ -27,8 +29,10 @@ def isSpam(file):
     domain_from = ''
     domain_message_id = ''
 
+    # variable 'to' contains mail (mails) of user who received suspicious messages
+    # variable 'to' in this code is the template
 
-    to = ['smirnoved5@mail.ru', 'lester0@rambler.ru', 'lester0578@gmail.com']
+    to = ['abcde@gmail.com']
     found_to = False
 
     needed_fields = {
@@ -221,9 +225,9 @@ def isSpam(file):
     else:
         print("This message " + file + " is spam")
 
+
 if __name__ == '__main__':
     print("Enter the file:")
     file = input()
-
     isSpam(file)
 

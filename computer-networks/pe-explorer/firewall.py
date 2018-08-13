@@ -4,6 +4,7 @@ import pefile
 list_libraries = []
 list_functions = []
 
+
 def initialize():
     libraries = open("network_libraries.txt")
     for lib in libraries:
@@ -15,7 +16,9 @@ def initialize():
         size = len(func)
         list_functions.append(func[:size - 1])
 
+
 initialize()
+
 
 def parse_pe(pe, filename):
     pe.parse_data_directories()
@@ -29,7 +32,7 @@ def parse_pe(pe, filename):
             lib = libs.dll.decode().lower()
             if lib in list_libraries:
                 for funcs in libs.imports:
-                    if funcs.name != None:
+                    if funcs.name is not None:
                         func = funcs.name.decode()
                         if func in list_functions:
                             libraries.append(lib)
@@ -39,7 +42,6 @@ def parse_pe(pe, filename):
             if flag:
                 break
 
-    
     if len(libraries) and len(functions):
         print("File: " + filename)
 
@@ -48,6 +50,7 @@ def parse_pe(pe, filename):
         for lib in libraries:
             for func in functions:
                 print("Lib: " + lib + " Func: " + func + "\n")
+
 
 def isUsingNetwork(folder):
     directory = folder
@@ -65,6 +68,7 @@ def isUsingNetwork(folder):
                 isUsingNetwork(filename)
     except:
         print("No access to " + folder)
+
 
 if __name__ == '__main__':
     print("Enter the directory:")

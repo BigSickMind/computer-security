@@ -14,7 +14,6 @@ def timeout():
 
 
 def write_data(file_name, data1, data2, name1, name2):
-    #print('Saving data with delimiter: {} {} in file {}\n'.format(name1, name2, file_name))
     with open(file_name, 'bw') as f:
         f.write(data1)  # first file
 

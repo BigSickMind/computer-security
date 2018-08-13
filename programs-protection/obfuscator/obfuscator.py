@@ -43,7 +43,6 @@ def delete_comments(all_lines):
 
 def get_constants(all_lines):
     all_constants = {}
-    # define_constants = {}
     for line in all_lines:
         pos = 0
         while pos < len(line) and not line[pos].isalpha():
@@ -82,9 +81,6 @@ def get_constants(all_lines):
                 const2 = const2[:len(const2) - 1]
                 all_constants[const2] = const1
             elif word == '#define':
-                # import re
-                # line_define = re.findall(r'\w+[)\n]', line)
-                # print(line_define)
                 pass
     all_constants['INT_MAX'] = str(2147483647)
     all_constants['INT_MIN'] = str(-2147483647)
@@ -102,7 +98,7 @@ def delete_constants(all_lines):
         pos1 = line.find(' ', pos)
         if pos1 != -1:
             word = line[pos:pos1]
-            if word == 'const' or word == 'typedef':  # or word == '#define':
+            if word == 'const' or word == 'typedef':
                 continue
         new_lines.append(line)
     return new_lines
@@ -128,7 +124,7 @@ def get_variables(all_lines, all_constants):
                     variables.append(variable)
             if len(variables):
                 for variable in variables:
-                    from keywords import is_keyword
+                    from .keywords import is_keyword
                     if not is_keyword(variable) and variable not in all_constants.keys():
                         all_variables[variable] = ''
     return all_variables
@@ -275,9 +271,6 @@ def obfuscator(file):
 
     all_variables = get_variables(all_lines, all_constants)
     all_variables = rename_variables(all_variables)
-
-    #print(all_variables)
-    #print(all_constants)
 
     new_lines = transform_lines(all_lines, all_variables, all_constants)
 

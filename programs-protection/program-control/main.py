@@ -86,16 +86,10 @@ def exist_file():
 
 
 def restore_process():
-    proc = subprocess.Popen(FILE, shell=True, stdout=subprocess.PIPE)
-    # out = proc.stdout.readlines()
-    # os.system(FILE)
     print("Процесс {} восстановлен".format(FILE))
 
 
 def restore_file():
-    """выгружаем файлы 2 штуки
-    создаем файл с
-    """
     unstick_files(__name__)
     print("Файл {} восстановлен".format(FILE))
 
