@@ -212,7 +212,7 @@ def write_msg_to_group(from_msg, group_msg, msg, date, time):
             else:
                 group = data[3][0:(length - 1)]
             if group_msg == group:
-                wtite_msg_to_user(from_msg, data[0], msg, date, time)
+                write_msg_to_user(from_msg, data[0], msg, date, time)
 
 
 def rewrite_file(rewrite):
@@ -461,7 +461,7 @@ def auth():
                                 date = strftime("%d.%m.%Y")
                                 time = strftime("%X")
                                 if type_of_message == 'u':
-                                    wtite_msg_to_user(username, to, message, date, time)
+                                    write_msg_to_user(username, to, message, date, time)
                                 else:
                                     write_msg_to_group(username, to, message, date, time)
                                 print("The message was successfully sent\n")
